@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    .box{
+    width:250px;
+    height:250px;
+    display:inline-block;
+    background-color:white;
+    border:1px;
+    border-color:black;
+    border-style: solid;
+    }
+    .area{
+    width:500px;
+
+    }
+    .area textarea{
+    width:100%;
+     overflow-y: scroll;
+     height: 100px;
+
+
+    }
+</style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+<body>
+
+<label>Your Gold</label><label>{{request.session.money}}</label>
+ <div class="box">
+
+<form action="/process_money" method="post">
+{% csrf_token %}
+
+        <h2>farm</h2>
+        <p>(earns 10-20 golds)</p>
+        <input type="hidden" name="type" value="farm">
+        <input type="submit" name="submit" value="submit">
+
+</form>
+    </div>
+
+    <div class="box">
+<form action="/process_money" method="post">
+{% csrf_token %}
+
+        <h2>Cave</h2>
+        <p>(earns 5-10 golds)</p>
+        <input type="hidden" name="type" value="cave">
+        <input type="submit" name="submit" value="submit">
+
+</form>
+    </div>
+
+
+    <div class="box">
+
+<form action="/process_money" method="post">
+{% csrf_token %}
+
+        <h2>house</h2>
+        <p>(earns 2-5 golds)</p>
+        <input type="hidden" name="type" value="house">
+        <input type="submit" name="submit" value="submit">
+</form>
+
+    </div>
+
+
+    <div class="box">
+<form action="/process_money" method="post">
+{% csrf_token %}
+
+        <h2>Casino</h2>
+        <p>(earns/takes 0-50 golds)</p>
+        <input type="hidden" name="type" value="casino">
+        <input type="submit" name="submit" value="submit">
+</form>
+
+    </div>
+
+<div class="area">
+    <h2>Activity log:</h2>
+    <textarea>
+        {{request.session.text}}
+    </textarea>
+
+                <a href="/restart" >Restart</a>
+
+</div>
+</body>
+</html>

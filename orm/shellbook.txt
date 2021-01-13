@@ -1,0 +1,413 @@
+>>> Book.objects.all()
+<QuerySet []>
+>>> Author.objects.all()
+<QuerySet []>
+>>> Author.objects.create(first_name="Noor",last_name="Zak")
+<Author: <Author object: Noor Zak (1)>>
+>>> Author.objects.create(first_name="Ahmad",last_name="Rob")
+<Author: <Author object: Ahmad Rob (2)>>
+>>> Author.objects.create(first_name="Sami",last_name="Jarrar")
+<Author: <Author object: Sami Jarrar (3)>>
+>>> Author.objects.all().delete
+<bound method QuerySet.delete of <QuerySet [<Author: <Author object: Noor Zak (1)>>, <Author: <Author object: Ahmad Rob (2)>>, <Author: <Author object: Sami Jarrar (
+3)>>]>>
+>>> Author.objects.all()
+<QuerySet [<Author: <Author object: Noor Zak (1)>>, <Author: <Author object: Ahmad Rob (2)>>, <Author: <Author object: Sami Jarrar (3)>>]>
+>>> Author.objects.get()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 410, in get
+    raise self.model.MultipleObjectsReturned(
+bookauthApp.models.Author.MultipleObjectsReturned: get() returned more than one Author -- it returned 3!
+>>> Author.objects.get
+<bound method BaseManager._get_queryset_methods.<locals>.create_method.<locals>.manager_method of <django.db.models.manager.Manager object at 0x000001EA3950A7F0>>
+>>> Author.objects.all().delete()
+(3, {'bookauthApp.Book_authors': 0, 'bookauthApp.Author': 3})
+>>> Author.objects.all()
+<QuerySet []>
+>>> Author.objects.create(first_name="Jane",last_name="Austin")
+<Author: <Author object: Jane Austin (4)>>
+>>> Author.objects.create(first_name="Emily",last_name="Dickinson")
+<Author: <Author object: Emily Dickinson (5)>>
+>>> Author.objects.create(first_name="Fyodor",last_name="Dostoevsky")
+<Author: <Author object: Fyodor Dostoevsky (6)>>
+>>> Author.objects.create(first_name="William",last_name="Shakespeare")
+<Author: <Author object: William Shakespeare (7)>>
+>>> Author.objects.create(first_name="Lau",last_name="Tzu")
+<Author: <Author object: Lau Tzu (8)>>
+>>> Book.objects.all()
+<QuerySet []>
+>>> Book.objects.create(title="C Sharp)
+  File "<console>", line 1
+    Book.objects.create(title="C Sharp)
+                                       ^
+SyntaxError: EOL while scanning string literal
+>>> Book.objects.create(title="C Sharp")
+<Book: <Book object: C SharpGreat Book! (1)>>
+>>> Book.objects.create(title="Java")
+<Book: <Book object: JavaGreat Book! (2)>>
+>>> Book.objects.create(title="Python")
+<Book: <Book object: PythonGreat Book! (3)>>
+>>> Book.objects.create(title="PHP")
+<Book: <Book object: PHPGreat Book! (4)>>
+>>> Book.objects.create(title="Ruby")
+<Book: <Book object: RubyGreat Book! (5)>>
+>>> exit()
+
+(djangoPy3Env) C:\Users\user\Desktop\python_stack\django\django_fundamentals\orm\bookauth>python manage.py makemigrations
+Migrations for 'bookauthApp':
+  bookauthApp\migrations\0002_author_desc.py
+    - Add field desc to author
+
+(djangoPy3Env) C:\Users\user\Desktop\python_stack\django\django_fundamentals\orm\bookauth>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, bookauthApp, contenttypes, sessions
+Running migrations:
+  Applying bookauthApp.0002_author_desc... OK
+
+(djangoPy3Env) C:\Users\user\Desktop\python_stack\django\django_fundamentals\orm\bookauth>cd shell
+The system cannot find the path specified.
+
+(djangoPy3Env) C:\Users\user\Desktop\python_stack\django\django_fundamentals\orm\bookauth>python manage.py shell
+Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Book.objects.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Book' is not defined
+>>> from bookauthApp.models import Book,Auth
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: cannot import name 'Auth' from 'bookauthApp.models' (C:\Users\user\Desktop\python_stack\django\django_fundamentals\orm\bookauth\bookauthApp\models.py)
+>>> from bookauthApp.models import Book,Author
+>>> Book.objects.all()
+<QuerySet [<Book: <Book object: C SharpGreat Book! (1)>>, <Book: <Book object: JavaGreat Book! (2)>>, <Book: <Book object: PythonGreat Book! (3)>>, <Book: <Book obje
+ct: PHPGreat Book! (4)>>, <Book: <Book object: RubyGreat Book! (5)>>]>
+>>> Book.objects.get(name="C Sharp")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 399, in get
+    clone = self.filter(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 892, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 910, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1290, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1315, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1190, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1049, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1419, in names_to_path
+    raise FieldError("Cannot resolve keyword '%s' into field. "
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: authors, created_at, desc, id, title, updated_at
+>>> Book.objects.get(name="Java")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 399, in get
+    clone = self.filter(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 892, in filter
+    return self._filter_or_exclude(False, *args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 910, in _filter_or_exclude
+    clone.query.add_q(Q(*args, **kwargs))
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1290, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1315, in _add_q
+    child_clause, needed_inner = self.build_filter(
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1190, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1049, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\sql\query.py", line 1419, in names_to_path
+    raise FieldError("Cannot resolve keyword '%s' into field. "
+django.core.exceptions.FieldError: Cannot resolve keyword 'name' into field. Choices are: authors, created_at, desc, id, title, updated_at
+>>> Book.objects.get(title="Java")
+<Book: <Book object: JavaGreat Book! (2)>>
+>>> Book.objects.get(title="C sharp")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 406, in get
+    raise self.model.DoesNotExist(
+bookauthApp.models.Book.DoesNotExist: Book matching query does not exist.
+>>> Book.objects.get(title="C Sharp")
+<Book: <Book object: C SharpGreat Book! (1)>>
+>>> book_to_update=Book.objects.get(title="C Sharp")
+>>> book_to_update.title="C#"
+>>> Book.objects.get(title="C#")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 406, in get
+    raise self.model.DoesNotExist(
+bookauthApp.models.Book.DoesNotExist: Book matching query does not exist.
+>>> Book.objects.get(title="C#")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 406, in get
+    raise self.model.DoesNotExist(
+bookauthApp.models.Book.DoesNotExist: Book matching query does not exist.
+>>> book_to_update=Book.objects.get(title="C Sharp")
+>>> book_to_update.title="C#"
+>>> book_to_update.save()
+>>> Book.objects.get(title="C#")
+<Book: <Book object: C#Great Book! (1)>>
+
+>>> Author.objects.get(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 406, in get
+    raise self.model.DoesNotExist(
+bookauthApp.models.Author.DoesNotExist: Author matching query does not exist.
+>>> Author.objects.get(id=4)
+<Author: <Author object: Jane Austin (4)>>
+>>> Author.objects.get(id=4)
+<Author: <Author object: Jane Austin (4)>>
+>>> Author.objects.get(id=4).first_name
+'Jane'
+>>> Author.objects.get(id=4).first_name="Bill"
+>>> Author.objects.get(id=4).first_name
+'Jane'
+>>> Author.objects.get(id=4).first_name="Bill"
+>>> Author.objects.get(id=4).first_name.save()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'str' object has no attribute 'save'
+>>> author_to_save=Author.objects.get(id=4)
+>>> author_to_save.first_name="Bill"
+>>> author_to_save.save()
+>>> Author.objects.get(id=4).first_name
+'Bill'
+>>> this_book = Book.objects.get(id=4)
+>>> this_book
+<Book: <Book object: PHPGreat Book! (4)>>
+>>> this_book = Book.objects.get(id=1)
+>>> b1 = Book.objects.get(id=1)
+>>> b2= Books.objects.get(id=2)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'Books' is not defined
+>>> b2= Book.objects.get(id=2)
+>>> b1
+<Book: <Book object: C#Great Book! (1)>>
+>>> b2
+<Book: <Book object: JavaGreat Book! (2)>>
+>>> Author.objects.get(id=4)
+<Author: <Author object: Bill Austin (4)>>
+>>> Author.objects.get(id=3)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 406, in get
+    raise self.model.DoesNotExist(
+bookauthApp.models.Author.DoesNotExist: Author matching query does not exist.
+>>> Author.objects.get(id=4)
+<Author: <Author object: Bill Austin (4)>>
+>>> author = Author.objects.get(id=4)
+>>> author.books.add(b1)
+>>> author.books.add(b2)
+>>> author.books.all()
+<QuerySet [<Book: <Book object: C#Great Book! (1)>>, <Book: <Book object: JavaGreat Book! (2)>>]>
+>>>  Books.objects.authors()
+  File "<console>", line 1
+    Books.objects.authors()
+IndentationError: unexpected indent
+>>>  Book.objects.authors()
+  File "<console>", line 1
+    Book.objects.authors()
+IndentationError: unexpected indent
+>>> Book.objects.authors()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'authors'
+>>> Book.objects.authors
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'authors'
+>>> Book.objects.authors
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'authors'
+>>>  Book.objects.authors.all()
+  File "<console>", line 1
+    Book.objects.authors.all()
+IndentationError: unexpected indent
+>>> Author.objects.books
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'books'
+>>> Book.objects.get(title="C#")
+<Book: <Book object: C#Great Book! (1)>>
+>>> Book.objects.get(title="C#").authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C44EFA90>
+>>> author = Author.objects.get(id=4)
+>>> Book.objects.get(id=1)
+<Book: <Book object: C#Great Book! (1)>>
+>>> Book.objects.get(id=1).authors.add(author)
+>>> Book.objects.get(id=2).authors.add(author)
+>>> Book.objects.get(id=1).authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C44EFA90>
+>>> Book.objects.get(title="C#").authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C452F580>
+>>> Book.objects.authors()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'authors'
+>>> Book.objects.authors
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'authors'
+>>> Book.objects.get(id=1).authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C44EFA90>
+>>> Book.objects.get(id=2).authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C452F580>
+>>> Author.objects.get(id=2)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\user\Desktop\python_stack\my_environments\djangoPy3Env\lib\site-packages\django\db\models\query.py", line 406, in get
+    raise self.model.DoesNotExist(
+bookauthApp.models.Author.DoesNotExist: Author matching query does not exist.
+>>> Author.objects.get(id=4)
+<Author: <Author object: Bill Austin (4)>>
+>>> Author.objects.get(id=4).books
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C45B1E20>
+>>> Book.objects.get(id=1).authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C452F580>
+>>> b1 = Book.objects.get(id=1)
+>>> b2 = Book.objects.get(id=2)
+>>> b3 = Book.objects.get(id=3)
+>>> b1
+<Book: <Book object: C#Great Book! (1)>>
+>>> b2
+<Book: <Book object: JavaGreat Book! (2)>>
+>>> b3
+<Book: <Book object: PythonGreat Book! (3)>>
+>>> Author.objects.get(id=5).books.add(b1)
+>>> Author.objects.get(id=5).books.add(b2)
+>>> Author.objects.get(id=5).books.add(b3)
+>>> Author.objects.get(id=5).books
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C452FAC0>
+>>> Author.objects.get(id=5).books.get(id=1)
+<Book: <Book object: C#Great Book! (1)>>
+>>> Author.objects.get(id=5).books.get(id=2)
+<Book: <Book object: JavaGreat Book! (2)>>
+>>> Author.objects.get(id=5).books
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C45B1250>
+>>> Author.objects.get(id=5).books(id=1)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: __call__() got an unexpected keyword argument 'id'
+>>> Author.objects.get(id=5).books.get(id=1)
+<Book: <Book object: C#Great Book! (1)>>
+>>> Book.objects.get(id=1).authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C452FAC0>
+>>> Book.objects.get(id=1)
+<Book: <Book object: C#Great Book! (1)>>
+>>> Book.objects.get(id=1).authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C452FAC0>
+>>> for a in Book.objects.get(id=1).authors:
+...     a
+...     a
+...
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: 'ManyRelatedManager' object is not iterable
+>>> Book.objects.get(id=1).authors[0]
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: 'ManyRelatedManager' object is not subscriptable
+>>> Book.objects.get(id=1).authors(id=4)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: __call__() got an unexpected keyword argument 'id'
+>>> Book.objects.get(id=1).authors
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00000218C45C5FD0>
+>>> Book.objects.get(id=1).authors(id=5)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: __call__() got an unexpected keyword argument 'id'
+>>> Book.objects.get(id=1).authors.get(id=5)
+<Author: <Author object: Emily Dickinson (5)>>
+>>> Book.objects.get(id=1).authors.get(id=4)
+<Author: <Author object: Bill Austin (4)>>
+>>> Book.objects.get(id=1).authors.get(id=5)
+<Author: <Author object: Emily Dickinson (5)>>
+
+>>> Book.objects.get(id=1).authors.get(id=5)
+<Author: <Author object: Emily Dickinson (5)>>
+>>> Book.objects.get(id=2).authors.get(id=5)
+<Author: <Author object: Emily Dickinson (5)>>
+>>> Book.objects.get(id=3).authors.get(id=5)
+<Author: <Author object: Emily Dickinson (5)>>
+>>> b1 = Book.objects.get(id=1)
+>>> b2 = Book.objects.get(id=2)
+>>> b3 = Book.objects.get(id=3)
+>>> b4 = Book.objects.get(id=4)
+>>> Author.objects.get(id=6).books.add(b1)
+>>> Author.objects.get(id=6).books.add(b2)
+>>> Author.objects.get(id=6).books.add(b3)
+>>> Author.objects.get(id=6).books.add(b4)
+>>> b5 = Book.objects.get(id=5)
+>>> Author.objects.get(id=7).books.add(b1)
+>>> Author.objects.get(id=7).books.add(b2)
+>>> Author.objects.get(id=7).books.add(b3)
+>>> Author.objects.get(id=7).books.add(b4)
+>>> Author.objects.get(id=7).books.add(b5)
+>>> Book.objects.get(id=3).authors.all()
+<QuerySet [<Author: <Author object: Emily Dickinson (5)>>, <Author: <Author object: Fyodor Dostoevsky (6)>>, <Author: <Author object: William Shakespeare (7)>>]>
+>>> Book.objects.get(id=3).authors.first()
+<Author: <Author object: Emily Dickinson (5)>>
+>>> Book.objects.get(id=3).authors.first().delete()
+(4, {'bookauthApp.Book_authors': 3, 'bookauthApp.Author': 1})
+>>> Book.objects.get(id=3).authors.first()
+<Author: <Author object: Fyodor Dostoevsky (6)>>
+>>> a = Author.objects.first()
+>>> a
+<Author: <Author object: Bill Austin (4)>>
+>>> a = Author.objects.last()
+>>> a
+<Author: <Author object: Lau Tzu (8)>>
+>>> Author.objects.books.get(id=2)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'books'
+>>> Author.objects.books.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'books'
+>>> Author.objects.books
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'books'
+>>> Book.objects.get(id=2)
+<Book: <Book object: JavaGreat Book! (2)>>
+>>> Book.objects.get(id=2).authors.add(a)
+>>> Book.objects.get(id=2).authors.all()
+<QuerySet [<Author: <Author object: Bill Austin (4)>>, <Author: <Author object: Fyodor Dostoevsky (6)>>, <Author: <Author object: William Shakespeare (7)>>, <Author:
+ <Author object: Lau Tzu (8)>>]>
+>>> Author.objects.get(id=6)
+<Author: <Author object: Fyodor Dostoevsky (6)>>
+>>> Author.objects.get(id=6).books.all()
+<QuerySet [<Book: <Book object: C#Great Book! (1)>>, <Book: <Book object: JavaGreat Book! (2)>>, <Book: <Book object: PythonGreat Book! (3)>>, <Book: <Book object: P
+HPGreat Book! (4)>>]>
+>>> Book.objects.get(id=5).authors.all()
+<QuerySet [<Author: <Author object: William Shakespeare (7)>>]>
+>>> Author.objects.get(id=6)

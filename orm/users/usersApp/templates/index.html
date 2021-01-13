@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+<h1 style="margin-left:50%;" >Users</h1>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+            {%for user in users%}
+
+        <tr>
+            <th scope="row">{{user.id}}</th>
+            <td>{{ user.first_name|add:" "|add:user.last_name }}</td>
+            <td>{{user.email_address}}</td>
+            <td>{{user.age}}</td>
+        </tr>
+           {%endfor%}
+
+  </tbody>
+</table>
+<form action="insert" method="post">
+ {% csrf_token %}
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="first_name">first name</label>
+      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="first name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="last_name">last name</label>
+      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last_name">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="email">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="age">age</label>
+      <input type="number" class="form-control" id="age" name="age" placeholder="age">
+    </div>
+  </div>
+
+  <div class="col text-center">
+      <button type="submit" class="btn btn-primary mb-2">add</button>
+    </div>
+
+</form>
+</center>
+</body>
+</html>

@@ -1,0 +1,87 @@
+>>> from usersApp.models import user
+>>> user
+<class 'usersApp.models.user'>
+>>> user.objects.create(first_name="Ahmad", last_name="Zak", email_address="ahmad.gmail.com",age=25)
+<user: user object (1)>
+>>> user.objects.create(first_name="Rami", last_name="Abo", email_address="rami.gmail.com",age=20)
+<user: user object (2)>
+>>> user.objects.create(first_name="sami", last_name="ahmad", email_address="sami.gmail.com",age=22)
+<user: user object (3)>
+>>> user.objects.all
+<bound method BaseManager.all of <django.db.models.manager.Manager object at 0x0000019361BD7FA0>>
+>>> user.objects.all()
+<QuerySet [<user: user object (1)>, <user: user object (2)>, <user: user object (3)>]>
+>>> user.objects.first()
+<user: user object (1)>
+>>> user.objects.last()
+<user: user object (3)>
+>>> user.objects.last()
+<user: user object (3)>
+>>> exit()
+
+KeyboardInterrupt
+>>> exit()
+
+(djangoPy3Env) C:\Users\user\Desktop\python_stack\django\django_fundamentals\orm\users>python manage.py shell
+Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> user.objects
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'user' is not defined
+>>> user.objects.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'user' is not defined
+>>> fom usersApp.models import user
+  File "<console>", line 1
+    fom usersApp.models import user
+        ^
+SyntaxError: invalid syntax
+>>> from usersApp.models import user
+>>> user
+<class 'usersApp.models.user'>
+>>> user.objects.first
+<bound method BaseManager._get_queryset_methods.<locals>.create_method.<locals>.manager_method of <django.db.models.manager.Manager object at 0x000001A7889D9430>>
+>>> user.objects.all()
+<QuerySet [<user: <User object: AhmadZak (1)>>, <user: <User object: RamiAbo (2)>>, <user: <User object: samiahmad (3)>>]>
+>>> user.objects.first()
+<user: <User object: AhmadZak (1)>>
+>>> user.objects.last()
+<user: <User object: samiahmad (3)>>
+>>> user.objects.get(id=3)
+<user: <User object: samiahmad (3)>>
+>>> user_to-alter = user.objects.get(id=3)
+  File "<console>", line 1
+    user_to-alter = user.objects.get(id=3)
+    ^
+SyntaxError: cannot assign to operator
+>>> user_to_alter = user.objects.get(id=3)
+>>> user_to_alter.last_name="Pancakes"
+>>> user.objects.get(id=3)
+<user: <User object: samiahmad (3)>>
+>>> user.objects.get(id=3)=user_to_alter
+  File "<console>", line 1
+    user.objects.get(id=3)=user_to_alter
+    ^
+SyntaxError: cannot assign to function call
+>>> user_to_alter.save()
+>>> user.objects.get(id=3)
+<user: <User object: samiPancakes (3)>>
+>>> user_to_delete = user.objects.get(id=2)
+>>> user_to_delete.delete()
+(1, {'usersApp.user': 1})
+>>> user.objects.all()
+<QuerySet [<user: <User object: AhmadZak (1)>>, <user: <User object: samiPancakes (3)>>]>
+>>> user.objects.all().order_by(first_name)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'first_name' is not defined
+>>> user.objects.all("first_name")
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: all() takes 1 positional argument but 2 were given
+>>> user.objects.all().order_by("first_name")
+<QuerySet [<user: <User object: AhmadZak (1)>>, <user: <User object: samiPancakes (3)>>]>
+>>> user.objects.all().order_by(first_name)

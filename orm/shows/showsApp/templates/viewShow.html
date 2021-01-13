@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body style="margin:100px">
+
+              <h2>Tv Show{{show.id}}</h2>
+
+              <h4>{{show.title}}</h4>
+              <h4>Network:{{show.network}}</h4>
+
+              <h4>Release Date:{{ show.release_date|date:"M d, Y" }}</h4>
+
+              <a class="btn btn-primary" href="../{{show.id}}/goToEdit" role="button">Edit</a>
+
+              <a class="btn btn-primary" href="../{{show.id}}/deleteShow" role="button">Delete</a>
+
+
+
+</body>
+</html>

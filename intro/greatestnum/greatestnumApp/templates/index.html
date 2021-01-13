@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<center>
+
+    <form method="POST" action="/">
+        {% csrf_token %}
+        <label for="newnum">Enter Number </label>
+        <input type="text" name="newnum" id="newnum">
+
+        <input type="submit" id="submit" value="submit">
+
+
+    </form>
+
+ <a href="again" >Play again</a>
+    <h3>
+        {{msg}}
+    </h3>
+
+</center>
+</body>
+</html>
